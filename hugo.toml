@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://monotone.studio/docs/'
 languageCode = 'en-us'
 title = 'monotone'
 theme = 'hugo-book'
@@ -6,11 +6,11 @@ theme = 'hugo-book'
 [params]
   BookSearch = false
 
-  ## Set source repository location.
-  ## Used for 'Last Modified' and 'Edit this page' links.
-  #BookRepo = 'https://github.com/alex-shpak/hugo-book'
+  # Set source repository location.
+  # Used for 'Last Modified' and 'Edit this page' links.
+  BookRepo = 'https://github.com/monotone-studio/monotone-docs'
 
   ## Enable "Edit this page" links for 'doc' page type.
   ## Disabled by default. Uncomment to enable. Requires 'BookRepo' param.
   ## Edit path must point to root directory of repo.
-  #BookEditPath = 'edit/main/exampleSite'
+  BookEditPath = 'edit/main'
