@@ -64,7 +64,7 @@ SHOW STORAGES
       "encryption": ""
     },
     "stats": {
-      "min": -1,
+      "min": 0,
       "max": 0,
       "partitions": 0,
       "partitions_local": 0,

@@ -26,7 +26,8 @@ monotone_write(monotone_t*, monotone_event_t*, int count);
 
 #### Batch Insert
 
-[`monotone_write()`](/docs/api/) API function is used to do an atomical write `count` of events.
+[`monotone_write()`](/docs/api/) API function is used to do an atomical batch write.
+`count` is the number of events in the batch.
 
 Each event has an associated `id`, `data`, `data_size`, and `flags` fields.
 `data_size` can be zero, and the `flags` must be set to zero for insert.
