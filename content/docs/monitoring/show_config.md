@@ -43,6 +43,8 @@ SHOW CONFIG
   "wal_crc": false,
   "serial": true,
   "interval": 3000000,
+  "compression": "zstd",
+  "compression_level": 0,
   "workers": 3,
   "workers_upload": 1,
   "ssn": 0,

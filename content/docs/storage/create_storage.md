@@ -71,6 +71,8 @@ equal to the current instance.
 
   Set compression type. Supported values are: `none`, `zstd`, `lz4`.
 
+  If not set, will use the [default compression](/docs/tutorial/configuration/) and compression level settings.
+
 - compression_level `int`
 
   Set compression level depending on the compression type.
@@ -83,6 +85,8 @@ equal to the current instance.
 
   Set the encryption key. The key must be `256 bits` long. If the key is not set, it will be
   automatically generated and saved inside the configuration file on the `CREATE STORAGE` command.
+
+#### Examples
 
 ```SQL
 -- Create new storage and set it as a primary

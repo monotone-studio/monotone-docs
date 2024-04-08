@@ -26,6 +26,8 @@ SHOW CONFIG
   "wal_crc": false,
   "serial": true,
   "interval": 3000000,
+  "compression": "zstd",
+  "compression_level": 0,
   "workers": 3,
   "workers_upload": 1,
   "ssn": 0,
@@ -134,6 +136,20 @@ Disabling WAL and relying only on automatic (or manual) per-partition durability
 - wal_crc `bool`
 
   Calculate and validate crc for each transaction (`disabled by default`).
+
+---
+
+#### Default Compression
+
+- compression `string`
+
+  Default compression type for [CREATE STORAGE](/docs/storage/create_storage/) and the `main` storage.
+
+  Supported values are: `none`, `zstd`, `lz4` ( `set to zstd by default`).
+
+- compression_level `int`
+
+  Default compression level depending on the compression type.
 
 ---
 

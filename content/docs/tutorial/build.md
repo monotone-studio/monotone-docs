@@ -12,7 +12,7 @@ Currently only Linux environments are supported.
 #### Dependencies
 
 - cmake
-- clang/gcc
+- gcc (recommended) or clang
 - libcurl
 - openssl
 - zstd
