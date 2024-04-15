@@ -15,8 +15,9 @@ The whole database can be seen as a 64-bit range sparse array of ordered events.
 Data is stored in sorted partition files.
 Each partition has an associated inclusive `[min, max]` range. Partitions never overlap.
 
-Event is a pair of `[u64 id, raw data]`. This is almost the same as the key-value approach, except for the addition of the `id` field. Event `id` is used as a key and represents a serial (or time) primary key.
-Additionally, it is possible to specify a custom comparator, which can be used to implement a compound key (use an additional embedded key in your data together with `id`).
+Event is a pair of `[u64 id, raw data]`. Event `id` is used as a key and represents a serial (or time) primary key.
+Events are designed to store any kind of unstructured data.
+Additionally, it is possible to specify a custom comparator, which can be used to implement a compound key (use an additional embedded key in your data together with `id` for uniqueness).
 
 It is correct to say, that monotone is a cloud-native key-value storage for events with
 advanced data management.
@@ -40,7 +41,7 @@ This index is kept in memory and loaded on start. The index size is insignifican
 Partition refresh does not block readers and writers.
 Partitions can be updated or read while being refreshed without blocking.
 This is implemented by switching the partition to the second in-memory storage and doing so in several short locking stages.
-Storage is designed to survive and automatically recover from crashes, which could potentially happen during a refresh (power outage).
+Storage is designed to survive and automatically recover from crashes, which could potentially happen during a refresh (power outage, app crash, etc.).
 
 Refresh automation is designed to reduce write-amplification as much as possible.
 Ideally, the partition should be written once, using only memory storage as a source.
@@ -53,7 +54,7 @@ Each partition uses a custom-made memory allocator context optimized for sequent
 and atomic free of large memory regions.
 This solves the problem of memory fragmentation of malloc, greatly improves data locality,
 and allows multi-threaded compaction to work without affecting other threads.
-Furthermore, the allocator is optimized for using Linux Huge Pages by design (but not mandatory).
+Furthermore, the allocator is optimized for using Linux Huge Pages by design.
 
 #### Read
 
@@ -78,7 +79,7 @@ Write-ahead logs are automatically deleted when data are saved to partitions.
 
 #### Locking
 
-Storage does not implement any kind of MVCC or Snapshot Isolation.
+Currently storage does not implement any kind of MVCC or Snapshot Isolation.
 This is done consciously to avoid problems with the unavoidable necessity for garbage collection (VACUUM).
 Instead, locking is done per partition, which is more in line with the common usage patterns.
 It is possible to read and write to different partitions without blocking each other.

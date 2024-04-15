@@ -1,4 +1,4 @@
-baseURL = 'https://monotone.studio/'
+baseURL = 'https://monotone.studio/docs/'
 languageCode = 'en-us'
 title = 'monotone'
 theme = 'hugo-book'
