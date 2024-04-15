@@ -20,8 +20,6 @@ monotone_free(void*);
 The first thing to do is to create a monotone environment object using the [`monotone_init()`](/docs/api/) API function.
 It returns `NULL` on error.
 
-Optionally, it is possible to set comparator using [`monotone_set_compare()`](/docs/tutorial/set_comparator/).
-
 #### Shutdown and Free objects
 
 [`monotone_free()`](/docs/api/) must be called to free the monotone objects, such as environment objects and cursors.

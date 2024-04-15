@@ -18,15 +18,13 @@ enum
 
 struct monotone_event
 {
-	uint64_t id;
-	void*    data;
-	size_t   data_size;
 	int      flags;
+	uint64_t id;
+	void*    key;
+	size_t   key_size;
+	void*    value;
+	size_t   value_size;
 };
-
-typedef int64_t (*monotone_compare_t)(monotone_event_t*,
-                                      monotone_event_t*,
-                                      void*);
 
 // environment
 MONOTONE_API monotone_t*
@@ -37,9 +35,6 @@ monotone_free(void*);
 
 MONOTONE_API const char*
 monotone_error(monotone_t*);
-
-MONOTONE_API int
-monotone_set_compare(monotone_t*, monotone_compare_t, void* arg);
 
 MONOTONE_API int
 monotone_open(monotone_t*, const char* path);

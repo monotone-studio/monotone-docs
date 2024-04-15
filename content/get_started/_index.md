@@ -43,11 +43,9 @@ Partitions never overlap. `Min` range is used as a partition `ID` for data manag
 Data management is implemented using partitions as a primary unit.
 Data are stored in sorted partition files, which can be stored in local [storage](/docs/storage/create_storage/), an associated [cloud](/docs/cloud/create_cloud/), or both.
 
-Event is a pair of `[u64 id, raw data]`. The event `ID` is used as a key and represents a serial (or time) primary key.
-Events are designed to store any kind of unstructured data.
-The data size might be zero.
-Additionally, it is possible to specify a custom comparator, which can be used to implement a compound key
-to use an additional embedded key in the data together with the event ID.
+An event is a combination of 64-bit id (or time) and key/value raw data `[id, key, value]`.
+The event `id` and the optional `key` represent a serial (or time) compound primary key. Events are designed to store any kind of unstructured data.
+The key and value data size might be zero.
 
 After [writing](/docs/tutorial/write_events/), events are cached in in-memory storage associated with the partition.
 Eventually, the updated partition must be [refreshed](/docs/data/refresh) to sync (or create) the partition file.

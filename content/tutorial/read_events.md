@@ -11,10 +11,12 @@ typedef struct monotone_event  monotone_event_t;
 
 struct monotone_event
 {
-	uint64_t id;
-	void*    data;
-	size_t   data_size;
 	int      flags;
+	uint64_t id;
+	void*    key;
+	size_t   key_size;
+	void*    value;
+	size_t   value_size;
 };
 
 MONOTONE_API monotone_cursor_t*
@@ -30,7 +32,7 @@ monotone_next(monotone_cursor_t*);
 #### Cursor
 
 The [`monotone_cursor()`](/docs/api/) API function is used to create and position a cursor starting from a provided `key`.
-If the `Key` is not defined, the cursor will start from the `minimum` event that currently exists.
+If the `Key` is set to `NULL`, the cursor will start from the `minimum` event that currently exists.
 Currently, the `options` argument is reserved and not used; `NULL` must be passed.
 
 In case of an error, `NULL` will be returned. [`monotone_error()`](/docs/api/) can be used to check the latest error message.

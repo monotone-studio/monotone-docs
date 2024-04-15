@@ -14,10 +14,12 @@ enum
 
 struct monotone_event
 {
-	uint64_t id;
-	void*    data;
-	size_t   data_size;
 	int      flags;
+	uint64_t id;
+	void*    key;
+	size_t   key_size;
+	void*    value;
+	size_t   value_size;
 };
 
 MONOTONE_API int
@@ -29,8 +31,9 @@ monotone_write(monotone_t*, monotone_event_t*, int count);
 [`monotone_write()`](/docs/api/) API function is used to do an atomical batch write.
 `count` is the number of events in the batch.
 
-Each event has an associated `id`, `data`, `data_size`, and `flags` fields.
-`data_size` can be zero, and the `flags` must be set to zero for insert.
+Each event has an associated `id`, `key`, `key_size`, `value`, `value_size` and `flags` fields.
+`key_size` and `value_size` can be zero, and the `flags` must be set to zero for insert.
+`key_size` is limited by `UINT8_MAX`.
 
 {{< hint warning >}}
 
@@ -42,8 +45,8 @@ After writing, each event `id` will be set to the automatically assigned value.
 
 {{< /hint >}}
 
-Unless a custom comparator is not defined, `id` represents a unique primary key and can be used in
-the future to replace or delete that event.
+`id` together with `key` represents a unique compound primary key and can be used in the future
+to replace or delete that event. `key_size` can be set to zero, in such case `id` must be unique.
 
 In case of an error, `-1` will be returned. [`monotone_error()`](/docs/api/) can be used to check the latest error message.
 All log messages are saved in the log file inside the base directory.
