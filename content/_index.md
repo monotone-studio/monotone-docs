@@ -4,7 +4,7 @@ type: docs
 bookToc: false
 ---
 
-![image description](/logo.png)
+![image description](/docs/logo.png)
 
 #### Overview
 

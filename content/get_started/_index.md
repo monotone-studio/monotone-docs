@@ -5,7 +5,7 @@ title: "Get Started"
 bookToc: false
 ---
 
-![image description](/logo.png)
+![image description](/docs/logo.png)
 
 #### Package
 
