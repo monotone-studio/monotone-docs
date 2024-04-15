@@ -7,6 +7,7 @@ html {
 body {
   min-width: $body-min-width;
   color: var(--body-font-color);
+  color: #21313c;
   background: var(--body-background);
 
   letter-spacing: 0.33px;
@@ -27,6 +28,7 @@ h3,
 h4,
 h5 {
   font-weight: $body-font-weight;
+  color: black;
 }
 
 a {
@@ -119,6 +121,7 @@ ul.pagination {
 
   a.active {
     color: var(--color-link);
+    color: #AF7FEB;
   }
 
   input.toggle + label + ul {
@@ -130,11 +133,15 @@ ul.pagination {
   }
 
   input.toggle + label::after {
-    content: "▸";
+    color: #777777;
+    font-weight: bold;
+    content: "›";
   }
 
   input.toggle:checked + label::after {
-    content: "▾";
+    color: #777777;
+    font-weight: bold;
+    content: "›";
   }
 }
 
@@ -156,6 +163,7 @@ body[dir="rtl"] .book-menu {
   > span,
   > label {
     font-weight: bolder;
+    color: black;
   }
 
   > ul {
